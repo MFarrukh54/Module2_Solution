@@ -17,14 +17,21 @@ angular.module('ShoppingListCheckOff',[])
 ToBuyController.$inject=['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService){
   var buyCont=this;
-  buyCont.itemIndex=0
+  buyCont.itemIndex=0;
   var shoppingService=ShoppingListCheckOffService;
-  buyCont.getBuyList=shoppingService.getBuyList();
+  buyCont.getBuyList=function (){
+     var list= shoppingService.getBuyList();
+     if(list.length===0){
+         buyCont.Status="Everything is bought!";
+     }
+     else{
+         buyCont.Status="";
+     }
+     return list;
+  }
   buyCont.buyItem=function(indexItem){
   shoppingService.buyItem(indexItem);
   };
-  buyCont.Empty=shoppingService.buyItemStatus();
-  console.log("Value of empty",buyCont.Empty);
 }
 
 // Already Bought Controller
@@ -32,7 +39,16 @@ AlreadyBoughtController.$inject=['ShoppingListCheckOffService'];
 function AlreadyBoughtController(ShoppingListCheckOffService){
    var boughtCont=this;
    var shoppingService =ShoppingListCheckOffService;
-   boughtCont.getboughtList=shoppingService.getBoughtList();
+   boughtCont.getboughtList=function(){
+       var list=shoppingService.getBoughtList();
+       if(list.length===0){
+        boughtCont.Status="Nothing bought yet.";
+    }
+    else{
+        boughtCont.Status="";
+    }
+    return list;
+   }
 }
 
 function ShoppingListCheckOffService(){
@@ -50,17 +66,7 @@ function ShoppingListCheckOffService(){
     service.getBoughtList=function(){
         return boughtItems;
     }
-    service.buyItemStatus=function(){
-        if(toBuyItems===null){
-            console.log("Not Work");
-            // return null;
-        }
-        else {
-            console.log("Work");
-            return null;
-            // return true;
-        }
-    }
+    
 }
 
 
