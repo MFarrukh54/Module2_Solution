@@ -3,10 +3,10 @@
 
 var ShoppingListItems=[
     {name:"Cookies",quantity:"10"},
-    {name:"Cookies",quantity:"10"},
-    {name:"Cookies",quantity:"10"},
-    {name:"Cookies",quantity:"10"},
-    {name:"Cookies",quantity:"10"}
+    {name:"Bottles",quantity:"5"},
+    {name:"Cakes",quantity:"4"},
+    {name:"Pizza",quantity:"3"},
+    {name:"Burger",quantity:"8"}
 ]
 angular.module('ShoppingListCheckOff',[])
 .controller('ToBuyController',ToBuyController)
